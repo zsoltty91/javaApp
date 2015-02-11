@@ -5,8 +5,6 @@
  */
 package network;
 
-import network.RequestType;
-import network.Value;
 import java.util.Map;
 
 /**
@@ -47,18 +45,33 @@ public class Request {
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         Request other = (Request) obj;
-        if (!this.type.equals(other.getType()) || !this.getObjectName().equals(other.getObjectName())
-                || this.getValues().size() != other.getValues().size()) {
+        if (objectName == null) {
+            if (other.objectName != null) {
+                return false;
+            }
+        } else if (!objectName.equals(other.objectName)) {
             return false;
         }
-        if (!this.values.keySet().containsAll(other.getValues().keySet())
-                || !other.getValues().keySet().containsAll(this.values.keySet())) {
+        if (type != other.type) {
             return false;
         }
+        /*if (values == null) {
+            if (other.values != null) {
+                return false;
+            }
+        } else if (!values.equals(other.values)) {
+            return false;
+        }*/
         return true;
     }
 

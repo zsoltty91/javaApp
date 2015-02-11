@@ -5,6 +5,7 @@
  */
 package network;
 
+import java.util.ArrayList;
 import network.Request;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,9 +18,15 @@ public class ProcessResponseThread extends NetworkRunnable {
     
     @Override
     protected void doThread() {
+        System.out.println("PROCESS: "+handler.getProcessRequests().toString());
         if (handler.hasRequestToProcess()) {
-            for (Request request : handler.getProcessRequests()) {
+            int size = handler.getProcessRequests().size();
+            ArrayList<Request> requests = handler.getProcessRequests();
+            Request request = null;
+            for (int i = 0; i<size; i++) {
+                request = requests.get(0);
                 handler.processResponse(request);
+                handler.removeProcessRequest(request);
             }
         } else {
             try {

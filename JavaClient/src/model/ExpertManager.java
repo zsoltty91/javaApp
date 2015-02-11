@@ -34,7 +34,14 @@ public class ExpertManager {
         }
         return manager;
     }
+    
+    public void getAllMetaExperts() {
+        metaPerzistence.getAll();
+    }
 
+    public void getAllLocalExperts() {
+    }
+    
     public Expert getLocalExpert(String name) {
         return experts.get(name).getLocalExpert();
     }

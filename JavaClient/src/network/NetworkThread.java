@@ -12,15 +12,15 @@ import java.util.logging.Logger;
  *
  * @author zsolti
  */
-public class NetworkThread {
+public class NetworkThread<T extends NetworkRunnable> {
 
     private Thread thread;
 
-    Class<NetworkRunnable> clazz;
+    Class<T> clazz;
 
     NetworkRunnable runnable;
 
-    public NetworkThread(Class<NetworkRunnable> clazz) {
+    public NetworkThread(Class<T> clazz) {
         this.clazz = clazz;
     }
 
@@ -29,10 +29,11 @@ public class NetworkThread {
     }
 
     public void startThread() {
-        if (!runnable.stop) {
+        if (runnable==null || runnable.stop) {
             try {
                 runnable = clazz.newInstance();
                 runnable.stop = false;
+                thread= new Thread(runnable);
                 thread.start();
             } catch (InstantiationException ex) {
                 Logger.getLogger(NetworkThread.class.getName()).log(Level.SEVERE, null, ex);

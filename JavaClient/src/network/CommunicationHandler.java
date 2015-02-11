@@ -5,10 +5,6 @@
  */
 package network;
 
-import network.Listener;
-import network.ProcessResponseThread;
-import network.Sender;
-
 /**
  *
  * @author zsolti
@@ -23,16 +19,16 @@ public class CommunicationHandler {
 
     private static CommunicationHandler handler;
 
-    NetworkThread listener;
+    NetworkThread<Listener> listener;
 
-    NetworkThread sender;
+    NetworkThread<Sender> sender;
 
-    NetworkThread process;
+    NetworkThread<ProcessResponseThread> process;
 
     private CommunicationHandler() {
-        listener = new NetworkThread(new Listener());
-        sender = new NetworkThread(new Sender());
-        process = new NetworkThread(new ProcessResponseThread());
+        listener = new NetworkThread<>(Listener.class);
+        sender = new NetworkThread<>(Sender.class);
+        process = new NetworkThread<>(ProcessResponseThread.class);
         if (!startedListen) {
             startListen();
         }

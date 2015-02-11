@@ -5,12 +5,9 @@
  */
 package network;
 
-import network.Request;
-import network.Value;
-import network.Type;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -60,9 +57,14 @@ public class Listener extends NetworkRunnable {
 
     @Override
     protected void doThread() {
+        System.out.println("LISTENER: "+handler.getGetRequests().toString());
         if (handler.hasRequestToGet()) {
             String read;
-            for (Request request : handler.getGetRequests()) {
+           int size = handler.getGetRequests().size();
+            ArrayList<Request> requests = handler.getGetRequests();
+            Request request = null;
+            for (int i = 0; i<size; i++) {
+                request = requests.get(0);
                 switch (request.getType()) {
                     case AVAILABLE: {
 //TODO

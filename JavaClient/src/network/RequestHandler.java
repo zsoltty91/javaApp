@@ -5,7 +5,6 @@
  */
 package network;
 
-import network.ResponseWorker;
 import java.util.ArrayList;
 
 /**
@@ -27,6 +26,7 @@ public class RequestHandler {
     private RequestHandler() {
         sendRequests = new ArrayList<>();
         getRequests = new ArrayList<>();
+        processRequests = new ArrayList<>();
     }
 
     public static RequestHandler getInstance() {
@@ -64,7 +64,7 @@ public class RequestHandler {
         sendRequests.remove(request);
     }
 
-    public boolean hasRequestToSend() {
+    boolean hasRequestToSend() {
         return !sendRequests.isEmpty();
     }
 
@@ -84,7 +84,7 @@ public class RequestHandler {
         processRequests.add(request);
     }
 
-    public ArrayList<Request> getProcessRequests() {
+    ArrayList<Request> getProcessRequests() {
         return processRequests;
     }
 

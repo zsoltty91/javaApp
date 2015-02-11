@@ -5,8 +5,6 @@
  */
 package network;
 
-import network.ConnectionWrapper;
-import network.RequestHandler;
 import java.util.logging.Logger;
 
 /**

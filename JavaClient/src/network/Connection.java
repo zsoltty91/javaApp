@@ -80,7 +80,7 @@ public class Connection {
     }
 
     public void sendMessage(String message) {
-        out.print(message);
+        out.println(message+"\0");
     }
 
     public String readMessage() {
