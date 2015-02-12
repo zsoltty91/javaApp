@@ -34,9 +34,9 @@ public class Sender extends NetworkRunnable {
                 if (request.getType().equals(RequestType.GET)) {
                     handler.addGetRequest(request);
                 }
-                System.out.println("sent, remove következik");
                 handler.removeSendRequest(request);
             }
+            conn.send("FINE");
         } else {
             try {
                 Thread.sleep(1500);
