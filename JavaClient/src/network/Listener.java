@@ -59,22 +59,31 @@ public class Listener extends NetworkRunnable {
     protected void doThread() {
         System.out.println("LISTENER: "+handler.getGetRequests().toString());
         if (handler.hasRequestToGet()) {
+            System.out.println("van listener requests to get");
             String read;
            int size = handler.getGetRequests().size();
             ArrayList<Request> requests = handler.getGetRequests();
             Request request = null;
+            System.out.println("hallo");
             for (int i = 0; i<size; i++) {
                 request = requests.get(0);
+                System.out.println("bent");
                 switch (request.getType()) {
                     case AVAILABLE: {
-//TODO
+                        
                     }
                     case GET: {
+                        
                         read = conn.getString();
+                        System.out.println("read: "+read);
                         if (read.equals("END")) {
                             logger.log(Level.SEVERE, "Váratlan END!");
                             break;
                         }
+                        if(!read.equals(RequestType.GET.toString())) {
+                            logger.log(Level.SEVERE,"Nem egyezik a request típusa!");
+                        }
+                        read=conn.getString();
                         if (!read.equals(request.getObjectName())) {
                             logger.log(Level.SEVERE, "Nem egyezik az objektumnév!");
                             break;

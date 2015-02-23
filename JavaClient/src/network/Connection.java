@@ -76,13 +76,23 @@ public class Connection {
 
     public void sendMessage(String message) {
         out.println(message+"\0");
+        out.flush();
+        try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                logger.log(Level.SEVERE, null, ex);
+            }
     }
 
     public String readMessage() {
         try {
-            return in.readLine();
+            String sor = in.readLine();
+            Thread.sleep(200);
+            return sor;
         } catch (IOException ex) {
             logger.log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
