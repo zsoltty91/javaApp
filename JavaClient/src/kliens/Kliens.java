@@ -30,7 +30,7 @@ public class Kliens {
         Integer a= 10;
         
         Object b=a;
-        RequestHandler.getInstance().setResponseWorker(new MetaPersistence());
+        //RequestHandler.getInstance().setResponseWorker(new MetaPersistence());
         System.out.println(((Integer)a).floatValue());
         CommunicationHandler.getInstance();
         try {

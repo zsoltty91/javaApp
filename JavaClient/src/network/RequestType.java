@@ -11,5 +11,5 @@ package network;
  * @author zsolti
  */
 public enum RequestType {
-    GET, SET, AVAILABLE, NEW
+    GET, SET, AVAILABLE, NEW;
 }

@@ -21,12 +21,16 @@ public class RequestHandler {
 
     private volatile ArrayList<Request> processRequests;
 
-    private ResponseWorker worker;
+    private ArrayList<ResponseWorker> workers;
 
     private RequestHandler() {
         sendRequests = new ArrayList<>();
         getRequests = new ArrayList<>();
         processRequests = new ArrayList<>();
+
+        workers = new ArrayList<>();
+
+        workers.add(new LogProcessResponse());
     }
 
     public static RequestHandler getInstance() {
@@ -36,8 +40,12 @@ public class RequestHandler {
         return handler;
     }
 
-    public void setResponseWorker(ResponseWorker worker) {
-        this.worker = worker;
+    public void addResponseWorker(ResponseWorker worker) {
+        this.workers.add(worker);
+    }
+
+    public void removeResponseWorker(ResponseWorker worker) {
+        this.workers.remove(worker);
     }
 
     public void addRequest(Request request) {
@@ -89,6 +97,8 @@ public class RequestHandler {
     }
 
     void processResponse(Request response) {
-        worker.processResponse(response);
+        for (ResponseWorker worker : workers) {
+            worker.processResponse(response);
+        }
     }
 }

@@ -11,5 +11,5 @@ package network;
  * @author zsolti
  */
 public enum Type {
-    STRING, BOOLEAN, INTEGER, DOUBLE
+    STRING, BOOLEAN, INTEGER, DOUBLE;
 }

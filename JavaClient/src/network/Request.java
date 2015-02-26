@@ -75,4 +75,8 @@ public class Request {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Request{"+ "type=" + type==null?null:type.toString() + ",objectName=" + objectName + ", values=" + values + '}';
+    }
 }

@@ -5,8 +5,6 @@
  */
 package network;
 
-import network.Type;
-
 /**
  *
  * @author zsolti
@@ -42,4 +40,8 @@ public class Value {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Value{" + "type=" + type==null?null:type.toString() + ", value=" + value + '}';
+    }
 }

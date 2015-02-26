@@ -6,9 +6,7 @@
 package network;
 
 import java.util.ArrayList;
-import network.Request;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

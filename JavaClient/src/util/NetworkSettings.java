@@ -31,7 +31,6 @@ public class NetworkSettings {
     static {
         File f = new File("src\\main\\resources\\connection.properties");
         if (!f.exists()) {
-            System.out.println("alma");
             logger.log(Level.CONFIG, "connection.properties created.");
             init();
         }
