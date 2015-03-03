@@ -6,6 +6,7 @@
 package network;
 
 import java.util.ArrayList;
+import model.MetaPersistence;
 
 /**
  *
@@ -31,6 +32,7 @@ public class RequestHandler {
         workers = new ArrayList<>();
 
         workers.add(new LogProcessResponse());
+        workers.add(MetaPersistence.getInstance());
     }
 
     public static RequestHandler getInstance() {

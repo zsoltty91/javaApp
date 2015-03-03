@@ -5,7 +5,7 @@
  */
 package model;
 
-import model.Perzistence;
+import java.util.Objects;
 
 /**
  *
@@ -83,4 +83,26 @@ public class PerzistenceObject {
     void setPerzistence(Perzistence per) {
         this.per = per;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PerzistenceObject other = (PerzistenceObject) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

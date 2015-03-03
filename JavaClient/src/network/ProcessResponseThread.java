@@ -23,6 +23,7 @@ public class ProcessResponseThread extends NetworkRunnable {
             Request request = null;
             for (int i = 0; i<size; i++) {
                 request = requests.get(0);
+                System.out.println("processing request: "+request.toString());
                 handler.processResponse(request);
                 handler.removeProcessRequest(request);
             }

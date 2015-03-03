@@ -50,6 +50,15 @@ public class ExpertVO {
     void removeMetaExpert() {
         this.metaExpert=null;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        Expert  expert= localExpert;
+        
+        if(expert==null) {
+        expert = metaExpert;
+        }
+        
+        return expert==null?"null":expert.getName();
+    }
 }

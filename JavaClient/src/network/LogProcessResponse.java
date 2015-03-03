@@ -6,15 +6,20 @@
 
 package network;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author zsolti
  */
 public class LogProcessResponse implements ResponseWorker{
 
+    private static final Logger logger = Logger.getLogger(LogProcessResponse.class.getName());
+    
     @Override
     public void processResponse(Request request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        logger.log(Level.INFO,"process request: "+request.toString());
     }
     
 }

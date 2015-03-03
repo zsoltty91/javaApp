@@ -5,9 +5,6 @@
  */
 package model;
 
-import model.PerzistenceObject;
-import model.Perzistence;
-
 /**
  *
  * @author zsolti
@@ -51,7 +48,10 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     private Integer rsiCloseStopLossBottom;
 
     public void setStep(Double step) {
-        if (maOpenDiff > 0) {
+        if (step == null) {
+            return;
+        }
+        if (step > 0) {
             this.step = step;
             set("step", step);
         }
@@ -69,6 +69,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setMaximum(Double maximum) {
+        if (maximum == null) {
+            return;
+        }
         if (maximum > 0) {
             this.maximum = maximum;
             set("maximum", maximum);
@@ -87,6 +90,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setLots(Double lots) {
+        if (lots == null) {
+            return;
+        }
         if (lots > 0) {
             this.lots = lots;
             set("lots", lots);
@@ -105,6 +111,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setTakeProfit(Integer takeProfit) {
+        if (takeProfit == null) {
+            return;
+        }
         if (takeProfit > 0) {
             this.takeProfit = takeProfit;
             set("takeProfit", takeProfit);
@@ -123,6 +132,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setStopLoss(Integer stopLoss) {
+        if (stopLoss == null) {
+            return;
+        }
         if (stopLoss > 0) {
             this.stopLoss = stopLoss;
             set("stopLoss", stopLoss);
@@ -157,6 +169,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setMaOpenPeriod(Integer maOpenPeriod) {
+        if (maOpenPeriod == null) {
+            return;
+        }
         if (maOpenPeriod > 0) {
             this.maOpenPeriod = maOpenPeriod;
             set("maOpenPeriod", maOpenPeriod);
@@ -175,6 +190,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setMaOpenDiff(Double maOpenDiff) {
+        if (maOpenDiff == null) {
+            return;
+        }
         if (maOpenDiff > 0) {
             this.maOpenDiff = maOpenDiff;
             set("maOpenDiff", maOpenDiff);
@@ -209,6 +227,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setWprOpenPeriod(Integer wprOpenPeriod) {
+        if (wprOpenPeriod == null) {
+            return;
+        }
         if (wprOpenPeriod > 0) {
             this.wprOpenPeriod = wprOpenPeriod;
             set("wprOpenPeriod", wprOpenPeriod);
@@ -227,6 +248,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setWprOpenBottom(Integer wprOpenBottom) {
+        if (wprOpenBottom == null) {
+            return;
+        }
         if (wprOpenBottom < 0) {
             this.wprOpenBottom = wprOpenBottom;
             set("wprOpenBottom", wprOpenBottom);
@@ -245,6 +269,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setWprOpenTop(Integer wprOpenTop) {
+        if (wprOpenTop == null) {
+            return;
+        }
         if (wprOpenTop < 0) {
             this.wprOpenTop = wprOpenTop;
             set("wprOpenTop", wprOpenTop);
@@ -279,6 +306,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setWprClosePeriod(Integer wprClosePeriod) {
+        if (wprClosePeriod == null) {
+            return;
+        }
         if (wprClosePeriod > 0) {
             this.wprClosePeriod = wprClosePeriod;
             set("wprClosePeriod", wprClosePeriod);
@@ -297,6 +327,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setWprCloseTakeProfitBottom(Integer wprCloseTakeProfitBottom) {
+        if (wprCloseTakeProfitBottom == null) {
+            return;
+        }
         if (wprCloseTakeProfitBottom < 0) {
             this.wprCloseTakeProfitBottom = wprCloseTakeProfitBottom;
             set("wprCloseTakeProfitBottom", wprCloseTakeProfitBottom);
@@ -315,6 +348,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setWprCloseTakeProfitTop(Integer wprCloseTakeProfitTop) {
+        if (wprCloseTakeProfitTop == null) {
+            return;
+        }
         if (wprCloseTakeProfitTop < 0) {
             this.wprCloseTakeProfitTop = wprCloseTakeProfitTop;
             set("wprCloseTakeProfitTop", wprCloseTakeProfitTop);
@@ -349,6 +385,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setMaClosePeriod(Integer maClosePeriod) {
+        if (maClosePeriod == null) {
+            return;
+        }
         if (maClosePeriod > 0) {
             this.maClosePeriod = maClosePeriod;
             set("maClosePeriod", maClosePeriod);
@@ -367,6 +406,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setMaCloseTakeProfitDiff(Double maCloseTakeProfitDiff) {
+        if (maCloseTakeProfitDiff == null) {
+            return;
+        }
         if (maCloseTakeProfitDiff > 0) {
             this.maCloseTakeProfitDiff = maCloseTakeProfitDiff;
             set("maCloseTakeProfitDiff", maCloseTakeProfitDiff);
@@ -401,6 +443,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setRsiClosePeriod(Integer rsiClosePeriod) {
+        if (rsiClosePeriod == null) {
+            return;
+        }
         if (rsiClosePeriod > 0) {
             this.rsiClosePeriod = rsiClosePeriod;
             set("rsiClosePeriod", rsiClosePeriod);
@@ -419,6 +464,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setRsiCloseStopLossTop(Integer rsiCloseStopLossTop) {
+        if (rsiCloseStopLossTop == null) {
+            return;
+        }
         if (rsiCloseStopLossTop > 0) {
             this.rsiCloseStopLossTop = rsiCloseStopLossTop;
             set("rsiCloseStopLossTop", rsiCloseStopLossTop);
@@ -437,6 +485,9 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
     }
 
     public void setRsiCloseStopLossBottom(Integer rsiCloseStopLossBottom) {
+        if (rsiCloseStopLossBottom == null) {
+            return;
+        }
         if (rsiCloseStopLossBottom > 0) {
             this.rsiCloseStopLossBottom = rsiCloseStopLossBottom;
             set("rsiCloseStopLossBottom", rsiCloseStopLossBottom);
@@ -464,34 +515,41 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
 
         Expert expert = new Expert();
 
-        expert.setIsCloseMaTakeProfit(new Boolean(this.getIsCloseMaTakeProfit()));
-        expert.setIsCloseRSIStopLoss(new Boolean(this.getIsCloseRSIStopLoss()));
-        expert.setIsCloseWprTakeProfit(new Boolean(this.getIsCloseWprTakeProfit()));
-        expert.setIsOpenMa(new Boolean(this.getIsOpenMa()));
-        expert.setIsOpenWpr(new Boolean(this.getIsOpenWpr()));
+        expert.refreshIsCloseMaTakeProfit(this.getIsCloseMaTakeProfit());
+        expert.refreshIsCloseRSIStopLoss(this.getIsCloseRSIStopLoss());
+        expert.refreshIsCloseWprTakeProfit(this.getIsCloseWprTakeProfit());
+        expert.refreshIsOpenMa(this.getIsOpenMa());
+        expert.refreshIsOpenWpr(this.getIsOpenWpr());
 
-        expert.setLots(new Double(this.getLots()));
-        expert.setMaClosePeriod(new Integer(this.getMaClosePeriod()));
-        expert.setMaCloseTakeProfitDiff(new Double(this.getMaCloseTakeProfitDiff()));
-        expert.setMaOpenDiff(new Double(this.getMaOpenDiff()));
-        expert.setMaOpenPeriod(new Integer(this.getMaOpenPeriod()));
-        expert.setMaximum(new Double(this.getMaximum()));
+        expert.refreshLots(this.getLots());
 
-        expert.setName(new String(this.getName()));
-        expert.setRsiClosePeriod(new Integer(this.getRsiClosePeriod()));
-        expert.setRsiCloseStopLossBottom(new Integer(this.getRsiCloseStopLossBottom()));
-        expert.setRsiCloseStopLossTop(new Integer(this.getRsiCloseStopLossTop()));
-        expert.setStep(new Double(this.getStep()));
-        expert.setStopLoss(new Integer(this.getStopLoss()));
-        expert.setTakeProfit(new Integer(this.getTakeProfit()));
-        expert.setWprClosePeriod(new Integer(this.getWprClosePeriod()));
-        expert.setWprCloseTakeProfitBottom(new Integer(this.getWprCloseTakeProfitBottom()));
-        expert.setWprCloseTakeProfitTop(new Integer(this.getWprCloseTakeProfitTop()));
-        expert.setWprOpenBottom(new Integer(this.getWprOpenBottom()));
-        expert.setWprOpenPeriod(new Integer(this.getWprOpenPeriod()));
-        expert.setWprOpenTop(new Integer(this.getWprOpenTop()));
+        expert.refreshMaClosePeriod(this.getMaClosePeriod());
+        expert.refreshMaCloseTakeProfitDiff(this.getMaCloseTakeProfitDiff());
+        expert.refreshMaOpenDiff(this.getMaOpenDiff());
+        expert.refreshMaOpenPeriod(this.getMaOpenPeriod());
+        expert.refreshMaximum(this.getMaximum());
+
+        expert.setName(this.getName());
+        expert.refreshRsiClosePeriod(this.getRsiClosePeriod());
+        expert.refreshRsiCloseStopLossBottom(this.getRsiCloseStopLossBottom());
+        expert.refreshRsiCloseStopLossTop(this.getRsiCloseStopLossTop());
+        expert.refreshStep(this.getStep());
+        expert.refreshStopLoss(this.getStopLoss());
+        expert.refreshTakeProfit(this.getTakeProfit());
+        expert.refreshWprClosePeriod(this.getWprClosePeriod());
+        expert.refreshWprCloseTakeProfitBottom(this.getWprCloseTakeProfitBottom());
+        expert.refreshWprCloseTakeProfitTop(this.getWprCloseTakeProfitTop());
+        expert.refreshWprOpenBottom(this.getWprOpenBottom());
+        expert.refreshWprOpenPeriod(this.getWprOpenPeriod());
+        expert.refreshWprOpenTop(this.getWprOpenTop());
 
         return expert;
     }
 
+    @Override
+    public String toString() {
+        return "Expert{ name= "+this.getName() + "step=" + step + ", maximum=" + maximum + ", lots=" + lots + ", takeProfit=" + takeProfit + ", stopLoss=" + stopLoss + ", isOpenMa=" + isOpenMa + ", maOpenPeriod=" + maOpenPeriod + ", maOpenDiff=" + maOpenDiff + ", isOpenWpr=" + isOpenWpr + ", wprOpenPeriod=" + wprOpenPeriod + ", wprOpenBottom=" + wprOpenBottom + ", wprOpenTop=" + wprOpenTop + ", isCloseWprTakeProfit=" + isCloseWprTakeProfit + ", wprClosePeriod=" + wprClosePeriod + ", wprCloseTakeProfitBottom=" + wprCloseTakeProfitBottom + ", wprCloseTakeProfitTop=" + wprCloseTakeProfitTop + ", isCloseMaTakeProfit=" + isCloseMaTakeProfit + ", maClosePeriod=" + maClosePeriod + ", maCloseTakeProfitDiff=" + maCloseTakeProfitDiff + ", isCloseRSIStopLoss=" + isCloseRSIStopLoss + ", rsiClosePeriod=" + rsiClosePeriod + ", rsiCloseStopLossTop=" + rsiCloseStopLossTop + ", rsiCloseStopLossBottom=" + rsiCloseStopLossBottom + '}';
+    }
+
+    
 }

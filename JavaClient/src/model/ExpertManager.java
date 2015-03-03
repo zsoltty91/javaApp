@@ -5,9 +5,10 @@
  */
 package model;
 
-import model.Perzistence;
-import model.MetaPersistence;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,36 +19,48 @@ public class ExpertManager {
 
     private Perzistence jsonPerzistence;
 
-    private Perzistence metaPerzistence;
+    private final Perzistence metaPerzistence;
 
     private Map<String, ExpertVO> experts;
 
     private static ExpertManager manager;
 
     private ExpertManager() {
-        metaPerzistence=new MetaPersistence();
+        experts = new HashMap<>();
+        metaPerzistence = MetaPersistence.getInstance();
     }
 
+    private Perzistence getMetaPerzistence() {
+        return metaPerzistence;
+    }
+    
     public static ExpertManager getInstance() {
         if (manager == null) {
             manager = new ExpertManager();
+            manager.getMetaPerzistence().setManager(manager);
         }
         return manager;
     }
     
+    public List<ExpertVO> getExpertVOs() {
+        ArrayList<ExpertVO> result = new ArrayList<>();
+        result.addAll(experts.values());
+        return result;
+    }
+
     public void getAllMetaExperts() {
         metaPerzistence.getAll();
     }
 
     public void getAllLocalExperts() {
     }
-    
+
     public Expert getLocalExpert(String name) {
-        return experts.get(name).getLocalExpert();
+        return experts.get(name)==null?null:experts.get(name).getLocalExpert();
     }
 
     public Expert getMetaExpert(String name) {
-        return experts.get(name).getMetaExpert();
+        return experts.get(name)==null?null:experts.get(name).getMetaExpert();
     }
 
     public void addMetaExpert(Expert e) {
@@ -56,7 +69,10 @@ public class ExpertManager {
             expertVO = new ExpertVO();
             experts.put(e.getName(), expertVO);
         }
-        expertVO.setMetaExpert(copyMetaExpert(e));
+       // if (expertVO.getMetaExpert() == null) {
+        {   expertVO.setMetaExpert(copyMetaExpert(e));
+        //expertVO.setMetaExpert(e);
+        }
     }
 
     public void addLocalExpert(Expert e) {
@@ -118,10 +134,5 @@ public class ExpertManager {
             }
         }
         return result;
-    }
-
-    public void refreshField(String expert, String variable, Object value) {
-    
-    
     }
 }

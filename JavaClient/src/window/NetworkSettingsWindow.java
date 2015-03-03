@@ -19,6 +19,43 @@ public class NetworkSettingsWindow extends javax.swing.JFrame {
      */
     public NetworkSettingsWindow() {
         initComponents();
+
+        String host = NetworkSettings.getHost();
+        if (host != null) {
+            if (host.equalsIgnoreCase("localhost")) {
+                localhostCheckbox.setSelected(true);
+            } else {
+                String[] ips = host.split(".");
+                ip1.setText(ips[0]);
+                ip2.setText(ips[1]);
+                ip3.setText(ips[2]);
+                ip4.setText(ips[3]);
+            }
+            setInputFieldsState();
+        }
+        Integer portNum = NetworkSettings.getPort();
+        if (portNum != null) {
+            port.setText(portNum.toString());
+        }
+    }
+
+    private void setIpTextFieldsState(boolean state) {
+        ip1.setEnabled(state);
+        ip2.setEnabled(state);
+        ip3.setEnabled(state);
+        ip4.setEnabled(state);
+    }
+
+    private void setInputFieldsState() {
+        if (localhostCheckbox.isSelected()) {
+            setIpTextFieldsState(false);
+            ip1.setText("");
+            ip2.setText("");
+            ip3.setText("");
+            ip4.setText("");
+        } else {
+            setIpTextFieldsState(true);
+        }
     }
 
     /**
@@ -43,12 +80,6 @@ public class NetworkSettingsWindow extends javax.swing.JFrame {
         ip1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-
-        ip2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ip2ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText(".");
 
@@ -144,34 +175,30 @@ public class NetworkSettingsWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ip2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ip2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ip2ActionPerformed
-
     private void localhostCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localhostCheckboxActionPerformed
-        // TODO add your handling code here:
+        setInputFieldsState();
     }//GEN-LAST:event_localhostCheckboxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Boolean error =false;
+        Boolean error = false;
         if ((localhostCheckbox.isSelected() || (!ip1.getText().isEmpty() && !ip2.getText().isEmpty() && !ip3.getText().isEmpty() && !ip4.getText().isEmpty())) && !port.getText().isEmpty()) {
             String host = "localhost";
             if (!localhostCheckbox.isSelected()) {
                 host = ip1.getText() + "." + ip2.getText() + "." + ip3.getText() + "." + ip4.getText();
             }
-            Integer portNumber=null;
+            Integer portNumber = null;
             try {
-            portNumber = Integer.parseInt(this.port.getText());
+                portNumber = Integer.parseInt(this.port.getText());
             } catch (NumberFormatException nfe) {
-             error=true;
+                error = true;
             }
             NetworkSettings.set(host, portNumber);
             this.setVisible(false);
         } else {
-        error=true;
+            error = true;
         }
-        if(error) {
-            JOptionPane.showMessageDialog(rootPane,"Érvényes adatokat adjon meg!","Bevitt adatok hiba",JOptionPane.ERROR_MESSAGE);
+        if (error) {
+            JOptionPane.showMessageDialog(rootPane, "Érvényes adatokat adjon meg!", "Bevitt adatok hiba", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

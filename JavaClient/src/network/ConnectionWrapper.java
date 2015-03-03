@@ -5,7 +5,6 @@
  */
 package network;
 
-import network.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +28,9 @@ public class ConnectionWrapper {
     public Integer getInteger() {
         Integer number = null;
         try {
-            Integer.parseInt(conn.readMessage());
+                 String read = conn.readMessage();
+            //System.out.println("getInt: *"+read+"*");
+           number = Integer.parseInt(read);
         } catch (NumberFormatException nfe) {
             logger.log(Level.WARNING, nfe.getMessage());
         }
@@ -39,7 +40,9 @@ public class ConnectionWrapper {
     public Double getDouble() {
         Double number = null;
         try {
-            Double.parseDouble(conn.readMessage());
+            String read = conn.readMessage();
+            //System.out.println("getDouble: *"+read+"*");
+           number = Double.parseDouble(read);
         } catch (NumberFormatException nfe) {
             logger.log(Level.WARNING, nfe.getMessage());
         }
@@ -49,7 +52,9 @@ public class ConnectionWrapper {
     public Boolean getBoolean() {
         Boolean number = null;
         try {
-            Boolean.parseBoolean(conn.readMessage());
+                 String read = conn.readMessage();
+            //System.out.println("getBool: *"+read+"*");
+          number =  Boolean.parseBoolean(read);
         } catch (NumberFormatException nfe) {
             logger.log(Level.WARNING, nfe.getMessage());
         }

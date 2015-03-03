@@ -42,21 +42,23 @@ public class Listener extends NetworkRunnable {
     }
 
     private Object readVariable(Type type) {
+        Object result = null;
         switch (type) {
             case BOOLEAN: {
-                return conn.getBoolean();
+                result = conn.getBoolean();break;
             }
             case DOUBLE: {
-                return conn.getDouble();
+                result = conn.getDouble();break;
             }
             case INTEGER: {
-                return conn.getInteger();
+                result = conn.getInteger();break;
             }
             case STRING: {
-                return conn.getString();
+                result = conn.getString();break;
             }
         }
-        return null;
+        System.out.println("result: "+result);
+        return result;
     }
 
     @Override
@@ -69,13 +71,27 @@ public class Listener extends NetworkRunnable {
             ArrayList<Request> requests = handler.getGetRequests();
             Request request = null;
             System.out.println("hallo");
-            for (int i = 0; i < size; i++) {
-                request = requests.get(0);
-                System.out.println("bent");
+            boolean exit = false;
+            while(true) {
+                if(!requests.isEmpty()) {
+                    request = requests.get(0);
+                } else {
+                    read = conn.getString();
+                    if(!read.equalsIgnoreCase("fine")) {
+                        logger.log(Level.SEVERE,"requests has gone, but not read fine");
+                    } else {
+                        logger.log(Level.INFO,"requests has gone, and read FINE");
+                    }
+                }
                 if (request.getType().equals(RequestType.AVAILABLE)) {
                     while(true) {
                         read = conn.getString();
                         if(read.equals("AVAILABLE_FINE")) {
+                            break;
+                        }
+                        if(read.equals("FINE")) {
+                            System.out.println("read fine, exit listen");
+                            exit=true;
                             break;
                         }
                         Request newRequest = new Request();
@@ -95,8 +111,9 @@ public class Listener extends NetworkRunnable {
                             }
                             
                             type = ParameterTypeMapper.getType(variable);
+                            //System.out.println("type: "+type);
                             value = readVariable(type);
-                            
+                            //System.out.println("value: "+value);
                             variables.put(variable, new Value(type, value));
                         }
                         newRequest.setValues(variables);
@@ -104,19 +121,23 @@ public class Listener extends NetworkRunnable {
                     }
                     handler.removeGetRequest(request);
                 } else {
-
                     read = conn.getString();
                     System.out.println("read: " + read);
+                    if(read.equals("FINE")) {
+                            System.out.println("read fine, exit listen");
+                            exit=true;
+                            break;
+                        }
                     if (read.equals("END")) {
                         logger.log(Level.SEVERE, "Váratlan END!");
                         break;
                     }
                     if (!read.equalsIgnoreCase(request.getType().toString())) {
-                        logger.log(Level.SEVERE, "Nem egyezik a request típusa!");
+                        logger.log(Level.SEVERE, "Nem egyezik a request típusa! "+read+" : "+request.getType().toString());
                     }
                     read = conn.getString();
                     if (!read.equals(request.getObjectName())) {
-                        logger.log(Level.SEVERE, "Nem egyezik az objektumnév!");
+                        logger.log(Level.SEVERE, "Nem egyezik az objektumnév! "+read);
                         break;
                     }
                     readVariables(request.getValues(),request.getType());
@@ -124,7 +145,9 @@ public class Listener extends NetworkRunnable {
                     handler.removeGetRequest(request);
                     break;
                 }
-
+                if(exit) {
+                    break;
+                }
             }
         } else {
             try {

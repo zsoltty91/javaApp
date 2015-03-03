@@ -20,7 +20,7 @@ public class Value {
     }
     public Value(Type type, Object value) {
         this.type = type;
-        this.value = null;
+        this.value = value;
     }
     
 

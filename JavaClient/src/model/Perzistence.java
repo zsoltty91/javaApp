@@ -13,6 +13,8 @@ import java.util.Map;
  */
 public interface Perzistence {
     
+    public abstract void setManager(ExpertManager manager);
+    
     public abstract void get(String name);
     
     public abstract void getAll();
