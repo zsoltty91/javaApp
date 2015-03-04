@@ -154,18 +154,6 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton7" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButton5" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -176,6 +164,27 @@
                                   <Component id="loadLocalExpertButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="loadMetaExpertButton" min="-2" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButton7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="copyLocalButton" min="-2" max="-2" attributes="0"/>
+                                          <Component id="copyMetaButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -209,14 +218,20 @@
                           <Group type="102" attributes="0">
                               <Component id="loadLocalExpertButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="copyMetaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Component id="moreSettingsPanel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="copyLocalButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -492,9 +507,6 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JCheckBox" name="lotsCheckBox">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lotsCheckBoxActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="stepCheckBox">
                 </Component>
@@ -666,34 +678,49 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField7"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaMaOpenPeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaWprOpenBottomTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField11"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="metaWprOpenBottomTextFieldActionPerformed"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaWprOpenBottomTextFieldFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaWprOpenPeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField10"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaWprOpenPeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaMaOpenDiffTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField8"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaMaOpenDiffTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaWprClosePeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField12"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaWprClosePeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaWprOpenTopTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField13"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaWprOpenTopTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaStepTextField">
                   <Properties>
@@ -708,20 +735,23 @@
                     <Property name="text" type="java.lang.String" value="jTextField4"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="metaMaximumTextFieldActionPerformed"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaMaximumTextFieldFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaLotsTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaLotsTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaTakeProfitTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField2"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="metaTakeProfitTextFieldActionPerformed"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaTakeProfitTextFieldFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaStopLossTextField">
@@ -729,71 +759,104 @@
                     <Property name="text" type="java.lang.String" value="jTextField1"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="metaStopLossTextFieldInputMethodTextChanged"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaStopLossTextFieldFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaWprCloseTakeProfitBottomTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField15"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaWprCloseTakeProfitBottomTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaWprCloseTakeProfitTopTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField16"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaWprCloseTakeProfitTopTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaMaClosePeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField18"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaMaClosePeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaMaCloseTakeProfitDiffTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField19"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaMaCloseTakeProfitDiffTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaRsiClosePeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField21"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaRsiClosePeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaRsiCloseStopLossTopTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField22"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaRsiCloseStopLossTopTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="metaRsiCloseStopLossBottomTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField23"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaRsiCloseStopLossBottomTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="metaIsOpenMaCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="metaIsOpenMaCheckBoxActionPerformed"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaIsOpenMaCheckBoxFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="metaIsOpenWprCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaIsOpenWprCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="metaIsCloseWprTakeProfitCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaIsCloseWprTakeProfitCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="metaIsCloseMaTakeProfitCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaIsCloseMaTakeProfitCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="metaIsCloseRsiStopLossCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="metaIsCloseRsiStopLossCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1232,118 +1295,184 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField38"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localWprCloseTakeProfitBottomTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localMaCloseTakeProfitDiffTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField42"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localMaCloseTakeProfitDiffTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localWprOpenPeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField33"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localWprOpenPeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localMaClosePeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField41"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localMaClosePeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localRsiCloseStopLossBottomTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField46"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localRsiCloseStopLossBottomTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localWprOpenTopTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField36"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localWprOpenTopTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localWprCloseTakeProfitTopTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField39"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localWprCloseTakeProfitTopTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localRsiClosePeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField44"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localRsiClosePeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localMaOpenDiffTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField31"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localMaOpenDiffTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localWprOpenBottomTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField34"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localWprOpenBottomTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localMaximumTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField27"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localMaximumTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localWprClosePeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField35"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localWprClosePeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localRsiCloseStopLossTopTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField45"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localRsiCloseStopLossTopTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localTakeProfitTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField25"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localTakeProfitTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localLotsTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField26"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localLotsTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localMaOpenPeriodTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField30"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localMaOpenPeriodTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localStepTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField28"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localStepTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="localStopLossTextField">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField24"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localStopLossTextFieldFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="localIsOpenMaCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localIsOpenMaCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="localIsOpenWprCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localIsOpenWprCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="localIsCloseWprTakeProfitCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localIsCloseWprTakeProfitCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="localIsCloseMaTakeProfitCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localIsCloseMaTakeProfitCheckBoxFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="localIsCloseRsiStopLossCheckBox">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Enable"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="localIsCloseRsiStopLossCheckBoxActionPerformed"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="localIsCloseRsiStopLossCheckBoxFocusLost"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1426,6 +1555,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadLocalExpertButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="copyMetaButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Copy Meta &gt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyMetaButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="copyLocalButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt; Copy Local"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyLocalButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

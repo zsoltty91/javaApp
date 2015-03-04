@@ -17,6 +17,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Expert;
 
 /**
  *
@@ -40,6 +41,16 @@ public class Kliens {
         }
         CommunicationHandler.getInstance().stopListen();
         CommunicationHandler.getInstance().stopSend();
+        
+        String name = new String("alma");
+        
+        Expert e = new Expert(), e2 = new Expert();
+        
+        e.setName(name);
+        
+        e2.setName(name);
+   //     e2.se
+        
     }
 
 }

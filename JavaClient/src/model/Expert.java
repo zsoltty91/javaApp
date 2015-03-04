@@ -504,6 +504,36 @@ public class Expert extends PerzistenceObject implements Comparable<Expert>, Clo
         }
         return rsiCloseStopLossBottom;
     }
+    
+    public void copy(Expert expert) {
+        this.refreshIsCloseMaTakeProfit(expert.getIsCloseMaTakeProfit());
+        this.refreshIsCloseRSIStopLoss(expert.getIsCloseRSIStopLoss());
+        this.refreshIsCloseWprTakeProfit(expert.getIsCloseWprTakeProfit());
+        this.refreshIsOpenMa(expert.getIsOpenMa());
+        this.refreshIsOpenWpr(expert.getIsOpenWpr());
+
+        this.refreshLots(expert.getLots());
+
+        this.refreshMaClosePeriod(expert.getMaClosePeriod());
+        this.refreshMaCloseTakeProfitDiff(expert.getMaCloseTakeProfitDiff());
+        this.refreshMaOpenDiff(expert.getMaOpenDiff());
+        this.refreshMaOpenPeriod(expert.getMaOpenPeriod());
+        this.refreshMaximum(expert.getMaximum());
+
+        this.setName(expert.getName());
+        this.refreshRsiClosePeriod(expert.getRsiClosePeriod());
+        this.refreshRsiCloseStopLossBottom(expert.getRsiCloseStopLossBottom());
+        this.refreshRsiCloseStopLossTop(expert.getRsiCloseStopLossTop());
+        this.refreshStep(expert.getStep());
+        this.refreshStopLoss(expert.getStopLoss());
+        this.refreshTakeProfit(expert.getTakeProfit());
+        this.refreshWprClosePeriod(expert.getWprClosePeriod());
+        this.refreshWprCloseTakeProfitBottom(expert.getWprCloseTakeProfitBottom());
+        this.refreshWprCloseTakeProfitTop(expert.getWprCloseTakeProfitTop());
+        this.refreshWprOpenBottom(expert.getWprOpenBottom());
+        this.refreshWprOpenPeriod(expert.getWprOpenPeriod());
+        this.refreshWprOpenTop(expert.getWprOpenTop());
+    }
 
     @Override
     public int compareTo(Expert o) {

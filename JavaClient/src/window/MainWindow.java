@@ -49,10 +49,13 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         ExpertVO expert = new ExpertVO();
         Expert e = new Expert();
         e.setName("alma");
+        e.refreshStopLoss(20);
+        setMetaFieldsValue(e);
         expert.setMetaExpert(e);
         experts.addElement(expert);
         setAllCheckBox(false);
         setComponentsState();
+        metaStepTextField.setText("basszameg");
     }
 
     private void setAllCheckBox(boolean state) {
@@ -82,6 +85,7 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     public void setMetaFieldsState(boolean state) {
+        System.out.println("setMetaFieldsState: "+state);
         metaStepTextField.setEnabled(state);
         metaMaximumTextField.setEnabled(state);
         metaTakeProfitTextField.setEnabled(state);
@@ -108,6 +112,7 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     public void clearMetaFields() {
+        System.out.println("clearMetaFields");
         metaStepTextField.setText("");
         metaMaximumTextField.setText("");
         metaTakeProfitTextField.setText("");
@@ -134,7 +139,9 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     public void setMetaFieldsValue(Expert expert) {
+        System.out.println("setmetafieldsValue");
         if (expert == null) {
+            System.out.println("null expert");
             clearMetaFields();
             setMetaFieldsState(false);
             return;
@@ -165,7 +172,9 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     public void setExpertFromMetaFields(Expert expert) {
+        System.out.println("setExpertFromMetaFields");
         if (expert == null) {
+            System.out.println("expert is null");
             return;
         }
         if (stepCheckBox.isSelected()) {
@@ -351,6 +360,196 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
             }
         }
     }
+    
+    public void setExpertFromLocalFields(Expert expert) {
+        System.out.println("setExpertFromLocalFields");
+        if (expert == null) {
+            System.out.println("expert is null");
+            return;
+        }
+        if (stepCheckBox.isSelected()) {
+            try {
+                Double number = Double.parseDouble(localStepTextField.getText());
+                expert.setStep(number);
+                localStepTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localStepTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (maximumCheckBox.isSelected()) {
+            try {
+                Double number = Double.parseDouble(localMaximumTextField.getText());
+                expert.setMaximum(number);
+                localMaximumTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localMaximumTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (takeProfitCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localTakeProfitTextField.getText());
+                expert.setTakeProfit(number);
+                localTakeProfitTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localTakeProfitTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (stopLossCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localStopLossTextField.getText());
+                expert.setStopLoss(number);
+                localStopLossTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localStopLossTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (lotsCheckBox.isSelected()) {
+            try {
+                Double number = Double.parseDouble(localLotsTextField.getText());
+                expert.setLots(number);
+                localLotsTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localLotsTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (isOpenMaCheckBox.isSelected()) {
+            expert.setIsOpenMa(localIsOpenMaCheckBox.isSelected());
+            localIsOpenMaCheckBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+        if (maOpenPeriodCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localMaOpenPeriodTextField.getText());
+                expert.setMaOpenPeriod(number);
+                localMaOpenPeriodTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localMaOpenPeriodTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (maOpenDiffCheckBox.isSelected()) {
+            try {
+                Double number = Double.parseDouble(localMaOpenDiffTextField.getText());
+                expert.setMaOpenDiff(number);
+                localMaOpenDiffTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localMaOpenDiffTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (isOpenWprCheckBox.isSelected()) {
+            expert.setIsOpenWpr(localIsOpenWprCheckBox.isSelected());
+            localIsOpenWprCheckBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+        if (wprOpenPeriodCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localWprOpenPeriodTextField.getText());
+                expert.setWprOpenPeriod(number);
+                localWprOpenPeriodTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localWprOpenPeriodTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (wprOpenBottomCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localWprOpenBottomTextField.getText());
+                expert.setWprOpenBottom(number);
+                localWprOpenBottomTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localWprOpenBottomTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (wprOpenTopCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localWprOpenTopTextField.getText());
+                expert.setWprOpenTop(number);
+                localWprOpenTopTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localWprOpenTopTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (isCloseWprTakeProfitCheckBox.isSelected()) {
+            expert.setIsCloseWprTakeProfit(localIsCloseWprTakeProfitCheckBox.isSelected());
+            localIsCloseWprTakeProfitCheckBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+        if (wprClosePeriodCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localWprClosePeriodTextField.getText());
+                expert.setWprClosePeriod(number);
+                localWprClosePeriodTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localWprClosePeriodTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (wprCloseTakeProfitBottomCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localWprCloseTakeProfitBottomTextField.getText());
+                expert.setWprCloseTakeProfitBottom(number);
+                localWprCloseTakeProfitBottomTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localWprCloseTakeProfitBottomTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (wprCloseTakeProfitTopCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localWprCloseTakeProfitTopTextField.getText());
+                expert.setWprCloseTakeProfitTop(number);
+                localWprCloseTakeProfitTopTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localWprCloseTakeProfitTopTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (isCloseMaTakeProfitCheckBox.isSelected()) {
+            expert.setIsCloseMaTakeProfit(localIsCloseMaTakeProfitCheckBox.isSelected());
+            localIsCloseMaTakeProfitCheckBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+        if (maClosePeriodCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localMaClosePeriodTextField.getText());
+                expert.setMaClosePeriod(number);
+                localMaClosePeriodTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localMaClosePeriodTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (maCloseTakeProfitDiffCheckBox.isSelected()) {
+            try {
+                Double number = Double.parseDouble(localMaCloseTakeProfitDiffTextField.getText());
+                expert.setMaCloseTakeProfitDiff(number);
+                localMaCloseTakeProfitDiffTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localMaCloseTakeProfitDiffTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (isCloseRsiStopLossCheckBox.isSelected()) {
+            expert.setIsCloseRSIStopLoss(localIsCloseRsiStopLossCheckBox.isSelected());
+            localIsCloseRsiStopLossCheckBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+        if (rsiClosePeriodCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localRsiClosePeriodTextField.getText());
+                expert.setRsiClosePeriod(number);
+                localRsiClosePeriodTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localRsiClosePeriodTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (rsiCloseStopLossTopCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localRsiCloseStopLossTopTextField.getText());
+                expert.setRsiCloseStopLossTop(number);
+                localRsiCloseStopLossTopTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localRsiCloseStopLossTopTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+        if (rsiCloseStopLossBottomCheckBox.isSelected()) {
+            try {
+                Integer number = Integer.parseInt(localRsiCloseStopLossBottomTextField.getText());
+                expert.setRsiCloseStopLossBottom(number);
+                localRsiCloseStopLossBottomTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+            } catch (NumberFormatException nfe) {
+                localRsiCloseStopLossBottomTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+            }
+        }
+    }
 
     public void setLocalFieldsState(boolean state) {
         localStepTextField.setEnabled(state);
@@ -379,6 +578,7 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     public void clearLocalFields() {
+        System.out.println("clearLocalFields");
         localStepTextField.setText("");
         localMaximumTextField.setText("");
         localTakeProfitTextField.setText("");
@@ -405,7 +605,9 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     public void setLocalFieldsValue(Expert expert) {
+        System.out.println("setLocalFieldsValue");
         if (expert == null) {
+            System.out.println("expert is null");
             clearLocalFields();
             setLocalFieldsState(false);
             return;
@@ -563,6 +765,8 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         jCheckBox3 = new javax.swing.JCheckBox();
         loadMetaExpertButton = new javax.swing.JButton();
         loadLocalExpertButton = new javax.swing.JButton();
+        copyMetaButton = new javax.swing.JButton();
+        copyLocalButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -661,12 +865,6 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        lotsCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lotsCheckBoxActionPerformed(evt);
-            }
-        });
-
         allCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allCheckBoxActionPerformed(evt);
@@ -760,21 +958,46 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         );
 
         metaMaOpenPeriodTextField.setText("jTextField7");
+        metaMaOpenPeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaMaOpenPeriodTextFieldFocusLost(evt);
+            }
+        });
 
         metaWprOpenBottomTextField.setText("jTextField11");
-        metaWprOpenBottomTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                metaWprOpenBottomTextFieldActionPerformed(evt);
+        metaWprOpenBottomTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaWprOpenBottomTextFieldFocusLost(evt);
             }
         });
 
         metaWprOpenPeriodTextField.setText("jTextField10");
+        metaWprOpenPeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaWprOpenPeriodTextFieldFocusLost(evt);
+            }
+        });
 
         metaMaOpenDiffTextField.setText("jTextField8");
+        metaMaOpenDiffTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaMaOpenDiffTextFieldFocusLost(evt);
+            }
+        });
 
         metaWprClosePeriodTextField.setText("jTextField12");
+        metaWprClosePeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaWprClosePeriodTextFieldFocusLost(evt);
+            }
+        });
 
         metaWprOpenTopTextField.setText("jTextField13");
+        metaWprOpenTopTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaWprOpenTopTextFieldFocusLost(evt);
+            }
+        });
 
         metaStepTextField.setText("jTextField5");
         metaStepTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -784,58 +1007,116 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         });
 
         metaMaximumTextField.setText("jTextField4");
-        metaMaximumTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                metaMaximumTextFieldActionPerformed(evt);
+        metaMaximumTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaMaximumTextFieldFocusLost(evt);
             }
         });
 
         metaLotsTextField.setText("jTextField3");
+        metaLotsTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaLotsTextFieldFocusLost(evt);
+            }
+        });
 
         metaTakeProfitTextField.setText("jTextField2");
-        metaTakeProfitTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                metaTakeProfitTextFieldActionPerformed(evt);
+        metaTakeProfitTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaTakeProfitTextFieldFocusLost(evt);
             }
         });
 
         metaStopLossTextField.setText("jTextField1");
-        metaStopLossTextField.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                metaStopLossTextFieldInputMethodTextChanged(evt);
+        metaStopLossTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaStopLossTextFieldFocusLost(evt);
             }
         });
 
         metaWprCloseTakeProfitBottomTextField.setText("jTextField15");
+        metaWprCloseTakeProfitBottomTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaWprCloseTakeProfitBottomTextFieldFocusLost(evt);
+            }
+        });
 
         metaWprCloseTakeProfitTopTextField.setText("jTextField16");
+        metaWprCloseTakeProfitTopTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaWprCloseTakeProfitTopTextFieldFocusLost(evt);
+            }
+        });
 
         metaMaClosePeriodTextField.setText("jTextField18");
+        metaMaClosePeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaMaClosePeriodTextFieldFocusLost(evt);
+            }
+        });
 
         metaMaCloseTakeProfitDiffTextField.setText("jTextField19");
+        metaMaCloseTakeProfitDiffTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaMaCloseTakeProfitDiffTextFieldFocusLost(evt);
+            }
+        });
 
         metaRsiClosePeriodTextField.setText("jTextField21");
+        metaRsiClosePeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaRsiClosePeriodTextFieldFocusLost(evt);
+            }
+        });
 
         metaRsiCloseStopLossTopTextField.setText("jTextField22");
+        metaRsiCloseStopLossTopTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaRsiCloseStopLossTopTextFieldFocusLost(evt);
+            }
+        });
 
         metaRsiCloseStopLossBottomTextField.setText("jTextField23");
+        metaRsiCloseStopLossBottomTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaRsiCloseStopLossBottomTextFieldFocusLost(evt);
+            }
+        });
 
         metaIsOpenMaCheckBox.setText("Enable");
-        metaIsOpenMaCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                metaIsOpenMaCheckBoxActionPerformed(evt);
+        metaIsOpenMaCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaIsOpenMaCheckBoxFocusLost(evt);
             }
         });
 
         metaIsOpenWprCheckBox.setText("Enable");
+        metaIsOpenWprCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaIsOpenWprCheckBoxFocusLost(evt);
+            }
+        });
 
         metaIsCloseWprTakeProfitCheckBox.setText("Enable");
+        metaIsCloseWprTakeProfitCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaIsCloseWprTakeProfitCheckBoxFocusLost(evt);
+            }
+        });
 
         metaIsCloseMaTakeProfitCheckBox.setText("Enable");
+        metaIsCloseMaTakeProfitCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaIsCloseMaTakeProfitCheckBoxFocusLost(evt);
+            }
+        });
 
         metaIsCloseRsiStopLossCheckBox.setText("Enable");
+        metaIsCloseRsiStopLossCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                metaIsCloseRsiStopLossCheckBoxFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1146,53 +1427,163 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         jLabel25.setText("Saved values");
 
         localWprCloseTakeProfitBottomTextField.setText("jTextField38");
+        localWprCloseTakeProfitBottomTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localWprCloseTakeProfitBottomTextFieldFocusLost(evt);
+            }
+        });
 
         localMaCloseTakeProfitDiffTextField.setText("jTextField42");
+        localMaCloseTakeProfitDiffTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localMaCloseTakeProfitDiffTextFieldFocusLost(evt);
+            }
+        });
 
         localWprOpenPeriodTextField.setText("jTextField33");
+        localWprOpenPeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localWprOpenPeriodTextFieldFocusLost(evt);
+            }
+        });
 
         localMaClosePeriodTextField.setText("jTextField41");
+        localMaClosePeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localMaClosePeriodTextFieldFocusLost(evt);
+            }
+        });
 
         localRsiCloseStopLossBottomTextField.setText("jTextField46");
+        localRsiCloseStopLossBottomTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localRsiCloseStopLossBottomTextFieldFocusLost(evt);
+            }
+        });
 
         localWprOpenTopTextField.setText("jTextField36");
+        localWprOpenTopTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localWprOpenTopTextFieldFocusLost(evt);
+            }
+        });
 
         localWprCloseTakeProfitTopTextField.setText("jTextField39");
+        localWprCloseTakeProfitTopTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localWprCloseTakeProfitTopTextFieldFocusLost(evt);
+            }
+        });
 
         localRsiClosePeriodTextField.setText("jTextField44");
+        localRsiClosePeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localRsiClosePeriodTextFieldFocusLost(evt);
+            }
+        });
 
         localMaOpenDiffTextField.setText("jTextField31");
+        localMaOpenDiffTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localMaOpenDiffTextFieldFocusLost(evt);
+            }
+        });
 
         localWprOpenBottomTextField.setText("jTextField34");
+        localWprOpenBottomTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localWprOpenBottomTextFieldFocusLost(evt);
+            }
+        });
 
         localMaximumTextField.setText("jTextField27");
+        localMaximumTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localMaximumTextFieldFocusLost(evt);
+            }
+        });
 
         localWprClosePeriodTextField.setText("jTextField35");
+        localWprClosePeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localWprClosePeriodTextFieldFocusLost(evt);
+            }
+        });
 
         localRsiCloseStopLossTopTextField.setText("jTextField45");
+        localRsiCloseStopLossTopTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localRsiCloseStopLossTopTextFieldFocusLost(evt);
+            }
+        });
 
         localTakeProfitTextField.setText("jTextField25");
+        localTakeProfitTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localTakeProfitTextFieldFocusLost(evt);
+            }
+        });
 
         localLotsTextField.setText("jTextField26");
+        localLotsTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localLotsTextFieldFocusLost(evt);
+            }
+        });
 
         localMaOpenPeriodTextField.setText("jTextField30");
+        localMaOpenPeriodTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localMaOpenPeriodTextFieldFocusLost(evt);
+            }
+        });
 
         localStepTextField.setText("jTextField28");
+        localStepTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localStepTextFieldFocusLost(evt);
+            }
+        });
 
         localStopLossTextField.setText("jTextField24");
+        localStopLossTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localStopLossTextFieldFocusLost(evt);
+            }
+        });
 
         localIsOpenMaCheckBox.setText("Enable");
+        localIsOpenMaCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localIsOpenMaCheckBoxFocusLost(evt);
+            }
+        });
 
         localIsOpenWprCheckBox.setText("Enable");
+        localIsOpenWprCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localIsOpenWprCheckBoxFocusLost(evt);
+            }
+        });
 
         localIsCloseWprTakeProfitCheckBox.setText("Enable");
+        localIsCloseWprTakeProfitCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localIsCloseWprTakeProfitCheckBoxFocusLost(evt);
+            }
+        });
 
         localIsCloseMaTakeProfitCheckBox.setText("Enable");
+        localIsCloseMaTakeProfitCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localIsCloseMaTakeProfitCheckBoxFocusLost(evt);
+            }
+        });
 
         localIsCloseRsiStopLossCheckBox.setText("Enable");
-        localIsCloseRsiStopLossCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                localIsCloseRsiStopLossCheckBoxActionPerformed(evt);
+        localIsCloseRsiStopLossCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                localIsCloseRsiStopLossCheckBoxFocusLost(evt);
             }
         });
 
@@ -1382,6 +1773,20 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
             }
         });
 
+        copyMetaButton.setText("Copy Meta >");
+        copyMetaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyMetaButtonActionPerformed(evt);
+            }
+        });
+
+        copyLocalButton.setText("< Copy Local");
+        copyLocalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyLocalButtonActionPerformed(evt);
+            }
+        });
+
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
@@ -1479,16 +1884,6 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton7)
-                                    .addComponent(jButton4)
-                                    .addComponent(jButton8)
-                                    .addComponent(jButton9)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton5)
@@ -1496,7 +1891,23 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(loadLocalExpertButton)
-                                    .addComponent(loadMetaExpertButton))))))
+                                    .addComponent(loadMetaExpertButton)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jCheckBox2)
+                                    .addComponent(jCheckBox3)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton7)
+                                            .addComponent(jButton4)
+                                            .addComponent(jButton8)
+                                            .addComponent(jButton9))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(copyLocalButton)
+                                            .addComponent(copyMetaButton))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1522,10 +1933,14 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(loadLocalExpertButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton4)
+                                    .addComponent(copyMetaButton)))))
                     .addComponent(moreSettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(copyLocalButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1614,21 +2029,9 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         }
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
-    private void metaMaximumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaMaximumTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_metaMaximumTextFieldActionPerformed
-
-    private void metaWprOpenBottomTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaWprOpenBottomTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_metaWprOpenBottomTextFieldActionPerformed
-
     private void allCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allCheckBoxActionPerformed
         setAllCheckBox(allCheckBox.isSelected());
     }//GEN-LAST:event_allCheckBoxActionPerformed
-
-    private void metaIsOpenMaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaIsOpenMaCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_metaIsOpenMaCheckBoxActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         clearLocalFields();
@@ -1659,38 +2062,221 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
         }
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
-    private void metaStopLossTextFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_metaStopLossTextFieldInputMethodTextChanged
-        System.out.println("changed"
-                + "");
-    }//GEN-LAST:event_metaStopLossTextFieldInputMethodTextChanged
-
-    private void metaTakeProfitTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaTakeProfitTextFieldActionPerformed
-        System.out.println("hello");
-    }//GEN-LAST:event_metaTakeProfitTextFieldActionPerformed
-
     private void metaStepTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaStepTextFieldFocusLost
-        System.out.println("elhagytad");
+        setMetaFieldsChangedState(getSelectedMetaExpert());
     }//GEN-LAST:event_metaStepTextFieldFocusLost
-
-    private void lotsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lotsCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lotsCheckBoxActionPerformed
-
-    private void localIsCloseRsiStopLossCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localIsCloseRsiStopLossCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_localIsCloseRsiStopLossCheckBoxActionPerformed
 
     private void loadMetaExpertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadMetaExpertButtonActionPerformed
         setExpertFromMetaFields(getSelectedMetaExpert());
+       setMetaFieldsChangedState(getSelectedMetaExpert());
     }//GEN-LAST:event_loadMetaExpertButtonActionPerformed
 
     private void loadLocalExpertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadLocalExpertButtonActionPerformed
-        setExpertFromMetaFields(getSelectedLocalExpert());
+        System.out.println("loadLocalExpert");
+        System.out.println(getSelectedExpertVO().toString());
+        setExpertFromLocalFields(getSelectedLocalExpert());
+        setLocalFieldsChangedState(getSelectedLocalExpert());
     }//GEN-LAST:event_loadLocalExpertButtonActionPerformed
 
+    private void copyMetaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMetaButtonActionPerformed
+        System.out.println("copyMetaExpertToLocal");
+        System.out.println(getSelectedExpertVO());
+        if(getSelectedExpertVO()!=null) {
+            getSelectedExpertVO().copyMetaExpertToLocalExpert();
+        }
+        setLocalFieldsValue(getSelectedLocalExpert());
+        setLocalFieldsState(getSelectedLocalExpert()!=null);
+    }//GEN-LAST:event_copyMetaButtonActionPerformed
+
+    private void metaStopLossTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaStopLossTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaStopLossTextFieldFocusLost
+
+    private void metaTakeProfitTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaTakeProfitTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaTakeProfitTextFieldFocusLost
+
+    private void metaLotsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaLotsTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaLotsTextFieldFocusLost
+
+    private void metaMaximumTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaMaximumTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaMaximumTextFieldFocusLost
+
+    private void metaIsOpenMaCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaIsOpenMaCheckBoxFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaIsOpenMaCheckBoxFocusLost
+
+    private void metaMaOpenPeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaMaOpenPeriodTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaMaOpenPeriodTextFieldFocusLost
+
+    private void metaMaOpenDiffTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaMaOpenDiffTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaMaOpenDiffTextFieldFocusLost
+
+    private void metaIsOpenWprCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaIsOpenWprCheckBoxFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaIsOpenWprCheckBoxFocusLost
+
+    private void metaWprOpenPeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaWprOpenPeriodTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaWprOpenPeriodTextFieldFocusLost
+
+    private void metaWprOpenBottomTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaWprOpenBottomTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaWprOpenBottomTextFieldFocusLost
+
+    private void metaWprClosePeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaWprClosePeriodTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaWprClosePeriodTextFieldFocusLost
+
+    private void metaWprOpenTopTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaWprOpenTopTextFieldFocusLost
+       setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaWprOpenTopTextFieldFocusLost
+
+    private void metaIsCloseWprTakeProfitCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaIsCloseWprTakeProfitCheckBoxFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaIsCloseWprTakeProfitCheckBoxFocusLost
+
+    private void metaWprCloseTakeProfitBottomTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaWprCloseTakeProfitBottomTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaWprCloseTakeProfitBottomTextFieldFocusLost
+
+    private void metaWprCloseTakeProfitTopTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaWprCloseTakeProfitTopTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaWprCloseTakeProfitTopTextFieldFocusLost
+
+    private void metaIsCloseMaTakeProfitCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaIsCloseMaTakeProfitCheckBoxFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaIsCloseMaTakeProfitCheckBoxFocusLost
+
+    private void metaMaClosePeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaMaClosePeriodTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaMaClosePeriodTextFieldFocusLost
+
+    private void metaMaCloseTakeProfitDiffTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaMaCloseTakeProfitDiffTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaMaCloseTakeProfitDiffTextFieldFocusLost
+
+    private void metaIsCloseRsiStopLossCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaIsCloseRsiStopLossCheckBoxFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaIsCloseRsiStopLossCheckBoxFocusLost
+
+    private void metaRsiClosePeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaRsiClosePeriodTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaRsiClosePeriodTextFieldFocusLost
+
+    private void metaRsiCloseStopLossTopTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaRsiCloseStopLossTopTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaRsiCloseStopLossTopTextFieldFocusLost
+
+    private void metaRsiCloseStopLossBottomTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_metaRsiCloseStopLossBottomTextFieldFocusLost
+        setMetaFieldsChangedState(getSelectedMetaExpert());
+    }//GEN-LAST:event_metaRsiCloseStopLossBottomTextFieldFocusLost
+
+    private void localStopLossTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localStopLossTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localStopLossTextFieldFocusLost
+
+    private void localTakeProfitTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localTakeProfitTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localTakeProfitTextFieldFocusLost
+
+    private void localLotsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localLotsTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localLotsTextFieldFocusLost
+
+    private void localMaximumTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localMaximumTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localMaximumTextFieldFocusLost
+
+    private void localStepTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localStepTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localStepTextFieldFocusLost
+
+    private void localIsOpenMaCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localIsOpenMaCheckBoxFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localIsOpenMaCheckBoxFocusLost
+
+    private void localMaOpenPeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localMaOpenPeriodTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localMaOpenPeriodTextFieldFocusLost
+
+    private void localMaOpenDiffTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localMaOpenDiffTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localMaOpenDiffTextFieldFocusLost
+
+    private void localIsOpenWprCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localIsOpenWprCheckBoxFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localIsOpenWprCheckBoxFocusLost
+
+    private void localWprOpenPeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localWprOpenPeriodTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localWprOpenPeriodTextFieldFocusLost
+
+    private void localWprOpenBottomTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localWprOpenBottomTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localWprOpenBottomTextFieldFocusLost
+
+    private void localWprClosePeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localWprClosePeriodTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localWprClosePeriodTextFieldFocusLost
+
+    private void localWprOpenTopTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localWprOpenTopTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localWprOpenTopTextFieldFocusLost
+
+    private void localIsCloseWprTakeProfitCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localIsCloseWprTakeProfitCheckBoxFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localIsCloseWprTakeProfitCheckBoxFocusLost
+
+    private void localWprCloseTakeProfitBottomTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localWprCloseTakeProfitBottomTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localWprCloseTakeProfitBottomTextFieldFocusLost
+
+    private void localWprCloseTakeProfitTopTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localWprCloseTakeProfitTopTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localWprCloseTakeProfitTopTextFieldFocusLost
+
+    private void localIsCloseMaTakeProfitCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localIsCloseMaTakeProfitCheckBoxFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localIsCloseMaTakeProfitCheckBoxFocusLost
+
+    private void localMaClosePeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localMaClosePeriodTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localMaClosePeriodTextFieldFocusLost
+
+    private void localMaCloseTakeProfitDiffTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localMaCloseTakeProfitDiffTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localMaCloseTakeProfitDiffTextFieldFocusLost
+
+    private void localIsCloseRsiStopLossCheckBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localIsCloseRsiStopLossCheckBoxFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localIsCloseRsiStopLossCheckBoxFocusLost
+
+    private void localRsiClosePeriodTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localRsiClosePeriodTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localRsiClosePeriodTextFieldFocusLost
+
+    private void localRsiCloseStopLossTopTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localRsiCloseStopLossTopTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localRsiCloseStopLossTopTextFieldFocusLost
+
+    private void localRsiCloseStopLossBottomTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_localRsiCloseStopLossBottomTextFieldFocusLost
+        setLocalFieldsChangedState(getSelectedLocalExpert());
+    }//GEN-LAST:event_localRsiCloseStopLossBottomTextFieldFocusLost
+
+    private void copyLocalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyLocalButtonActionPerformed
+        
+    }//GEN-LAST:event_copyLocalButtonActionPerformed
+
     private void setMetaFieldsChangedState(Expert expert) {
+        System.out.println("setMetaFieldsChangedState");
         boolean isNull = false;
         if (expert == null) {
+            System.out.println("expert is null");
             clearMetaFields();
             setMetaFieldsState(false);
             isNull = true;
@@ -1825,10 +2411,12 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     }
 
     private void setLocalFieldsChangedState(Expert expert) {
+        System.out.println("setLocalFieldsChangedState");
         boolean isNull = false;
         if (expert == null) {
-            clearMetaFields();
-            setMetaFieldsState(false);
+            System.out.println("expert is null");
+            clearLocalFields();
+            setLocalFieldsState(false);
             isNull = true;
         }
         if (isNull || (expert.getStep() != null && expert.getStep().toString().equals(localStepTextField.getText()))) {
@@ -1963,14 +2551,19 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     private void setComponentsState() {
         ExpertVO expertVO = null;
         if (expertList.isSelectionEmpty()) {
+            System.out.println("empty selection");
             clearMetaFields();
             clearLocalFields();
             setMetaFieldsState(false);
             setLocalFieldsState(false);
         } else {
+            System.out.println("not empty selection");
             expertVO = (ExpertVO) expertList.getSelectedValue();
+            System.out.println(expertVO.getMetaExpert().toString());
             setMetaFieldsValue(expertVO.getMetaExpert());
+            setMetaFieldsState(expertVO.getMetaExpert()!=null);
             setLocalFieldsValue(expertVO.getLocalExpert());
+            setLocalFieldsState(expertVO.getMetaExpert()!=null);
         }
         setMetaFieldsChangedState(expertVO == null ? null : expertVO.getMetaExpert());
         setLocalFieldsChangedState(expertVO == null ? null : expertVO.getLocalExpert());
@@ -1982,6 +2575,10 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
 
     private Expert getSelectedLocalExpert() {
         return expertList.getSelectedValue() == null ? null : ((ExpertVO) expertList.getSelectedValue()).getLocalExpert();
+    }
+    
+    private ExpertVO getSelectedExpertVO() {
+        return (ExpertVO) expertList.getSelectedValue();
     }
 
     /**
@@ -2025,7 +2622,9 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JCheckBox allCheckBox;
     private javax.swing.JMenuItem contentsMenuItem;
+    private javax.swing.JButton copyLocalButton;
     private javax.swing.JMenuItem copyMenuItem;
+    private javax.swing.JButton copyMetaButton;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JMenu editMenu;
@@ -2163,13 +2762,10 @@ public class MainWindow extends javax.swing.JFrame implements ModelChangeListene
     @Override
     public void refreshModel() {
         System.out.println("mainwindow refreshmodel");
+        experts.clear();
+        
         for (ExpertVO expert : expertManager.getExpertVOs()) {
-            System.out.println("add expert to list " + expert);
             experts.addElement(expert);
-        }
-        System.out.println("listben lévő expertek");
-        for (int i = 0; i < experts.getSize(); i++) {
-            System.out.println(experts.get(i).getMetaExpert());
         }
     }
 

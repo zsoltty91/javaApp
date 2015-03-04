@@ -83,6 +83,10 @@ public class PerzistenceObject {
     void setPerzistence(Perzistence per) {
         this.per = per;
     }
+    
+    public Perzistence getPerzistence() {
+        return per;
+    }
 
     @Override
     public int hashCode() {
